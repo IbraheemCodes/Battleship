@@ -57,3 +57,55 @@ class Game:
         
     def get_difficulty(self):
         return self.opponent_difficulty
+
+
+# Player class
+class Player:
+    def __init__(self, username, ship):
+        self.username = username
+        self.ship = ship
+        
+    def set_username(self, uname):
+        self.username = uname
+            
+    def set_ship(self, ship):
+        self.ship = ship
+        
+    def get_ship(self, show_ship, as_array):
+        if show_ship:
+            output = ""
+            temp = self.ship
+                        
+            for row in temp:
+                for col in row:
+                    output += str(col[0])
+                output += "\n"
+        
+            return temp if as_array else output
+        else:
+            output = ""
+            temp = self.ship
+            for row in temp:
+                for col in row:
+                    if col == Icons.SHIP and not show_ship:
+                        output += Icons.WATER
+                    else:
+                        output += str(col[0])
+                output += "\n"
+            
+            return temp if as_array else output
+
+        
+    def get_username(self):
+        return self.username
+    
+    def has_ships_remaining(self):
+        result = False
+        temp = self.ship
+        for row in temp:
+            for col in row:
+                if col == Icons.SHIP:
+                    result = True
+                    break
+        
+        return result
