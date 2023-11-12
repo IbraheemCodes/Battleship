@@ -237,4 +237,17 @@ def print_results():
     print(human.get_ship(True, False) + "-------------")
     print(human.get_username())
     print("-------------")
-    
+
+
+# function to attack bot with specified coords
+def player_attack_bot(column, row):
+    temp = bot.get_ship(True, True)
+
+    if temp[column][row] == ICONS["Ship"]:
+        print(ICONS["WomanSmoking"] + " Good shot chief!")
+        temp[column][row] = ICONS["Explosion"]
+    else:
+        print(ICONS["WomanSmoking"] + " Nice try chief!")
+        temp[column][row] = ICONS["Flame"]
+
+    bot.set_ship(temp)
