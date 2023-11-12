@@ -1,20 +1,9 @@
-from google.oauth2.service_account import Credentials
 from enum import Enum
 import random
 import os
 import sys
 import subprocess
-import gspread
 
-
-SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-]
-
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPE_CREDS)
 
 # Constants
 COLUMNS = 5
@@ -179,8 +168,8 @@ class Validator:
             print("Column needs to be numerical\nTry again:\n")
             return False
 
-    
-    # Reset the board
+
+# Reset the board
 
 def reset_board(columns, rows):
 
@@ -231,3 +220,21 @@ def initialise_game():
 
             else:
                 print("**Invalid difficulty chosen!**")
+
+# used to print the results every time an attack is done
+
+
+def print_results():
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+    subprocess.call("clear" if os.name != "nt" else "cls", shell=True)
+    print("-------------")
+    print(bot.get_username())
+    print("-------------")
+    print(bot.get_ship(show_opponents_ships, False))
+    print(ICONS["Barrels"])
+    print("")
+    print(human.get_ship(True, False) + "-------------")
+    print(human.get_username())
+    print("-------------")
+    
