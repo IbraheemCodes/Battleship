@@ -113,3 +113,68 @@ class Player:
                     result = True
                     break
         return result
+
+
+# Validator class
+
+
+class Validator:
+    @staticmethod
+    def is_input_int(i):
+        try:
+            int(i)
+            return True
+        except ValueError:
+            return False
+
+    @staticmethod
+    def is_selected_difficulty_valid(i):
+        if Validator.is_input_int(i):
+            if int(i) in [member.value for member in Difficulty]:
+                return True
+        return False
+
+    @staticmethod
+    def is_row_attack_valid(i):
+        if Validator.is_input_int(i):
+            attack_loc = int(i) - 1
+            if attack_loc < 0 or attack_loc >= ROWS:
+                print("Attack is out of range.\nTry again:")
+                return False
+            else:
+                row_all_used = True
+                temp_bot_ship = bot.get_ship(False, True)
+
+                for i in temp_bot_ship[attack_loc]:
+                    if i == ICONS["Water"] or i == ICONS["Ship"]:
+                        row_all_used = False
+                if row_all_used:
+                    print("This entire row is already destroyed\nTry again:\n")
+                    return False
+                else:
+                    return True
+        else:
+            print(f"Row must be numerical (1-{ROWS})\nTry again:\n")
+            return False
+
+    @staticmethod
+    def is_overall_attack_valid(row_input, column_input):
+        if Validator.is_input_int(column_input):
+            row_input = int(row_input) - 1
+            column_input = int(column_input) - 1
+
+            if column_input < 0 or column_input >= COLUMNS:
+                print("Column is out of range.\nTry again:")
+                return False
+            else:
+                temp_bot_ship = bot.get_ship(False, True)
+                target_loc = temp_bot_ship[row_input][column_input]
+                if target_loc == ICONS["Flame"] or target_loc == ICONS["Explosion"]:
+                    print_results()
+                    print("You cannot attack the same location twice\nTry again\n")
+                    return False
+                else:
+                    return True
+        else:
+            print("Column needs to be numerical\nTry again:\n")
+            return False
