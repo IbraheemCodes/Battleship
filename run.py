@@ -194,3 +194,40 @@ def reset_board(columns, rows):
             board[row][col] = ICONS["Ship"]
             ships_placed += 1
     return board
+
+
+# Instantiate players
+game = Game(Difficulty.STANDARD, State.INITIALISING)
+human = Player(ICONS["Cool"], reset_board(COLUMNS, ROWS))
+bot = Player(ICONS["Telescope"] + ICONS["Robot"] + ICONS["Gun"] + " (Opponent)", reset_board(COLUMNS, ROWS))
+
+# Initialise the game
+
+
+def initialise_game():
+
+    is_username_valid = False
+    is_difficulty_valid = False
+
+    while game.game_state == State.INITIALISING:
+        while not is_username_valid:
+            username = input("**Enter your username...**\n")
+            if len(username) > 0:
+                is_username_valid = True
+                human.set_username(ICONS["Telescope"] + ICONS["Cool"] + ICONS["Gun"] + " (" + username + ")")
+
+        while not is_difficulty_valid:
+            difficulty = input("\n**Choose the difficulty:**\n1. Standard\n2. Veteran\n3. Near Impossible\n")
+            difficulty = difficulty.strip()
+            if Validator.is_selected_difficulty_valid(difficulty):
+                difficulty = int(difficulty)
+                if difficulty in [member.value for member in Difficulty]:
+                    game.set_difficulty(Difficulty(difficulty))
+                    human.set_ship(reset_board(COLUMNS, ROWS))
+                    bot.set_ship(reset_board(COLUMNS, ROWS))
+                    is_difficulty_valid = True
+                    game.set_state(State.ACTIVE)
+                    break
+
+            else:
+                print("**Invalid difficulty chosen!**")
