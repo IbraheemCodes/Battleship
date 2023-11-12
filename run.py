@@ -178,3 +178,19 @@ class Validator:
         else:
             print("Column needs to be numerical\nTry again:\n")
             return False
+
+    
+    # Reset the board
+
+def reset_board(columns, rows):
+
+    board = [[ICONS["Water"] for _ in range(columns)] for _ in range(rows)]
+    ships_placed = 0
+
+    while ships_placed < rows:
+        row = random.randint(0, rows - 1)
+        col = random.randint(0, columns - 1)
+        if board[row][col] == ICONS["Water"]:
+            board[row][col] = ICONS["Ship"]
+            ships_placed += 1
+    return board
