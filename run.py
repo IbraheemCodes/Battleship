@@ -267,9 +267,6 @@ def bot_attack_player():
     chosen_row = random.randint(0, row_len)
     attack_loc = temp[chosen_column][chosen_row]
 
-    chosen_column = -1
-    chosen_row = -1
-
     if difficulty == Difficulty.STANDARD:
         if attack_loc == ICONS["Ship"] or attack_loc == ICONS["Water"]:
             attack_valid = True
@@ -371,7 +368,6 @@ def play_game():
 
         is_row_valid = False
         is_column_valid = False
-    
 
     # End game actions
 
