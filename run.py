@@ -371,4 +371,30 @@ def play_game():
 
         is_row_valid = False
         is_column_valid = False
-        
+    
+
+    # End game actions
+
+
+def end_game_actions():
+
+    did_human_win = human.has_ships_remaining()
+    while game.game_state == State.AWAITING_END_ACTION:
+        if did_human_win:
+            print_results()
+            print("Well done " + human.get_username()[4::] + "!")
+        else:
+            print_results()
+            print("Good battle! But let's not give up")
+        next_action = input("Would you like to go again? (Y/N)")
+        if next_action.upper() == "Y":
+            game.set_state(State.INITIALISING)
+            initialise_game()
+        elif next_action.upper() == "N":
+            sys.exit()
+
+
+# Called functions. Each function repeatedly executes depending on game's state
+initialise_game()
+play_game()
+end_game_actions()
