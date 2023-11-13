@@ -251,3 +251,124 @@ def player_attack_bot(column, row):
         temp[column][row] = ICONS["Flame"]
 
     bot.set_ship(temp)
+
+
+# function to attack player after an attack is done. No parameters are required
+def bot_attack_player():
+
+    temp = human.get_ship(True, True)
+    difficulty = game.get_difficulty()
+
+    column_len = len(temp) - 1
+    row_len = len(temp[0]) - 1
+
+    attack_valid = False
+    chosen_column = random.randint(0, column_len)
+    chosen_row = random.randint(0, row_len)
+    attack_loc = temp[chosen_column][chosen_row]
+
+    chosen_column = -1
+    chosen_row = -1
+
+    if difficulty == Difficulty.STANDARD:
+        if attack_loc == ICONS["Ship"] or attack_loc == ICONS["Water"]:
+            attack_valid = True
+
+        while not attack_valid:
+            chosen_column = random.randint(0, column_len)
+            chosen_row = random.randint(0, row_len)
+            attack_loc = temp[chosen_column][chosen_row]
+
+            if attack_loc == ICONS["Ship"] or attack_loc == ICONS["Water"]:
+                attack_valid = True
+
+    if difficulty == Difficulty.VETERAN:
+        force_winning_gamble = random.randint(0, 8)
+        if force_winning_gamble > 3:
+            attack_valid = False
+            for column_idx, column in enumerate(temp):
+                for row_idx, row in enumerate(column):
+                    if row == ICONS["Ship"]:
+                        chosen_column = column_idx
+                        chosen_row = row_idx
+                        attack_loc = temp[chosen_column][chosen_row]
+                        attack_valid = True
+                        break
+                    if not attack_valid:
+                        chosen_column = -1
+                        chosen_row = -1
+        else:
+            while not attack_valid:
+                chosen_column = random.randint(0, column_len)
+                chosen_row = random.randint(0, row_len)
+                attack_loc = temp[chosen_column][chosen_row]
+
+                if attack_loc == ICONS["Ship"] or attack_loc == ICONS["Water"]:
+                    attack_valid = True
+
+    if difficulty == Difficulty.NEAR_IMPOSSIBLE:
+        force_winning_gamble = random.randint(0, 1)
+        if force_winning_gamble == 0:
+            attack_valid = False  # Reset the flag
+            for column_idx, column in enumerate(temp):
+                for row_idx, row in enumerate(column):
+                    if row == ICONS["Ship"]:
+                        chosen_column = column_idx
+                        chosen_row = row_idx
+                        attack_loc = temp[chosen_column][chosen_row]
+                        attack_valid = True
+                    break
+                if not attack_valid:
+                    chosen_column = -1
+                    chosen_row = -1
+        else:
+            while not attack_valid:
+                chosen_column = random.randint(0, column_len)
+                chosen_row = random.randint(0, row_len)
+                attack_loc = temp[chosen_column][chosen_row]
+
+                if attack_loc == ICONS["Ship"] or attack_loc == ICONS["Water"]:
+                    attack_valid = True
+
+    if attack_loc == ICONS["Ship"]:
+        print(ICONS["WomanSmoking"] + " Ahh we lost a ship!")
+        temp[chosen_column][chosen_row] = ICONS["Explosion"]
+    else:
+        print(ICONS["WomanSmoking"] + " Haha, they missed. Let's strike back!")
+        temp[chosen_column][chosen_row] = ICONS["Flame"]
+
+    human.set_ship(temp)
+
+
+# Play the game
+def play_game():
+    is_row_valid = False
+    is_column_valid = False
+    target_column = 0
+    target_row = 0
+
+    while game.game_state == State.ACTIVE:
+        print_results()
+        while not is_row_valid:
+            row = input(f"Enter Row (1-{ROWS}):\n")
+            is_row_valid = Validator.is_row_attack_valid(row)
+            target_row = row
+
+        while not is_column_valid:
+            column = input(f"Enter Column (1-{COLUMNS}):\n")
+            is_column_valid = Validator.is_overall_attack_valid(target_row, column)
+            target_column = column
+
+        player_attack_bot(int(target_row) - 1, int(target_column) - 1)
+        if not bot.has_ships_remaining():
+            game.set_state(State.AWAITING_END_ACTION)
+            break
+
+        bot_attack_player()
+        if not human.has_ships_remaining():
+            game.set_state(State.AWAITING_END_ACTION)
+            break
+
+        is_row_valid = False
+        is_column_valid = False
+        
