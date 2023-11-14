@@ -4,23 +4,23 @@ import os
 import sys
 import subprocess
 
-
 # Constants
 COLUMNS = 5
 ROWS = 6
 
+
 ICONS = {
-    "Ship": "🚢 ",
-    "Flame": "🔥 ",
+    "Ship": "🚢",
+    "Flame": "🔥",
     "Water": "🌊",
     "Robot": " 🤖 ",
-    "Cool": "😎 ",
-    "Explosion": "💥 ",
-    "Barrel": "🛢️ ",
+    "Cool": " 😎 ",
+    "Explosion": "💥",
+    "Barrel": "🛢️",
     "Barrels": "🛢️ 🛢️ 🛢️ 🛢️ 🛢️",
-    "Telescope": " 🔭 ",  # replacement for binoculars
-    "Gun": " 🔫 ",
-    "WomanSmoking": "🚬 👩"
+    "Telescope": "🔭",  # replacement for binoculars
+    "Gun": "🔫",
+    "WomanSmoking": "🚬👩"
 }
 
 
@@ -83,7 +83,7 @@ class Player:
             temp = self.ship
             for row in temp:
                 for col in row:
-                    if col == ICONS["Ship"] + " ":
+                    if col == ICONS["Ship"]:
                         output += ICONS["Water"] + " "
                     else:
                         output += str(col[0] + " ")
@@ -102,7 +102,6 @@ class Player:
                     result = True
                     break
         return result
-
 
 # Validator class
 
@@ -168,8 +167,8 @@ class Validator:
             print("Column needs to be numerical\nTry again:\n")
             return False
 
-
 # Reset the board
+
 
 def reset_board(columns, rows):
 
@@ -226,8 +225,8 @@ def initialise_game():
 
 def print_results():
 
-    os.system('cls' if os.name == 'nt' else 'clear')
-    subprocess.call("clear" if os.name != "nt" else "cls", shell=True)
+  # os.system('cls' if os.name == 'nt' else 'clear')
+  # subprocess.call("clear" if os.name != "nt" else "cls", shell=True)
     print("-------------")
     print(bot.get_username())
     print("-------------")
@@ -272,6 +271,7 @@ def bot_attack_player():
             attack_valid = True
 
         while not attack_valid:
+
             chosen_column = random.randint(0, column_len)
             chosen_row = random.randint(0, row_len)
             attack_loc = temp[chosen_column][chosen_row]
@@ -327,7 +327,6 @@ def bot_attack_player():
                 if attack_loc == ICONS["Ship"] or attack_loc == ICONS["Water"]:
                     attack_valid = True
 
-    print("code reach test")
     if attack_loc == ICONS["Ship"]:
         print(ICONS["WomanSmoking"] + " Ahh we lost a ship!")
         temp[chosen_column][chosen_row] = ICONS["Explosion"]
@@ -370,7 +369,7 @@ def play_game():
         is_row_valid = False
         is_column_valid = False
 
-    # End game actions
+# End game actions
 
 
 def end_game_actions():
@@ -379,7 +378,7 @@ def end_game_actions():
     while game.game_state == State.AWAITING_END_ACTION:
         if did_human_win:
             print_results()
-            print("Well done " + human.get_username()[4::] + "!")
+            print("Well done " + human.get_username() + "!")
         else:
             print_results()
             print("Good battle! But let's not give up")
