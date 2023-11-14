@@ -12,14 +12,14 @@ ROWS = 6
 ICONS = {
     "Ship": "🚢 ",
     "Flame": "🔥 ",
-    "Water": "🌊 ",
-    "Robot": "🤖 ",
+    "Water": "🌊",
+    "Robot": " 🤖 ",
     "Cool": "😎 ",
     "Explosion": "💥 ",
     "Barrel": "🛢️ ",
-    "Barrels": "🛢️🛢️🛢️🛢️🛢️",
-    "Telescope": "🔭 ",  # replacement for binoculars
-    "Gun": "🔫",
+    "Barrels": "🛢️ 🛢️ 🛢️ 🛢️ 🛢️",
+    "Telescope": " 🔭 ",  # replacement for binoculars
+    "Gun": " 🔫 ",
     "WomanSmoking": "🚬 👩"
 }
 
@@ -75,7 +75,7 @@ class Player:
             temp = self.ship
             for row in temp:
                 for col in row:
-                    output += str(col[0])
+                    output += str(col[0] + " ")
                 output += "\n"
             return temp if as_array else output
         else:
@@ -83,10 +83,10 @@ class Player:
             temp = self.ship
             for row in temp:
                 for col in row:
-                    if col == ICONS["Ship"]:
-                        output += ICONS["Water"]
+                    if col == ICONS["Ship"] + " ":
+                        output += ICONS["Water"] + " "
                     else:
-                        output += str(col[0])
+                        output += str(col[0] + " ")
                 output += "\n"
             return temp if as_array else output
 
@@ -203,7 +203,7 @@ def initialise_game():
             username = input("**Enter your username...**\n")
             if len(username) > 0:
                 is_username_valid = True
-                human.set_username(ICONS["Telescope"] + " " + ICONS["Cool"] + " " + ICONS["Gun"] + " (" + username + ")")
+                human.set_username(ICONS["Telescope"] + ICONS["Cool"] + ICONS["Gun"] + " (" + username + ")")
 
         while not is_difficulty_valid:
             difficulty = input("\n**Choose the difficulty:**\n1. Standard\n2. Veteran\n3. Near Impossible\n")
