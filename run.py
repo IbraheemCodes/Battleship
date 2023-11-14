@@ -203,7 +203,7 @@ def initialise_game():
             username = input("**Enter your username...**\n")
             if len(username) > 0:
                 is_username_valid = True
-                human.set_username(ICONS["Telescope"] + ICONS["Cool"] + ICONS["Gun"] + " (" + username + ")")
+                human.set_username(ICONS["Telescope"] + " " + ICONS["Cool"] + " " + ICONS["Gun"] + " (" + username + ")")
 
         while not is_difficulty_valid:
             difficulty = input("\n**Choose the difficulty:**\n1. Standard\n2. Veteran\n3. Near Impossible\n")
