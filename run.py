@@ -10,15 +10,15 @@ COLUMNS = 5
 ROWS = 6
 
 ICONS = {
-    "Ship": "🚢",
-    "Flame": "🔥",
-    "Water": "🌊",
-    "Robot": "🤖",
+    "Ship": "🚢 ",
+    "Flame": "🔥 ",
+    "Water": "🌊 ",
+    "Robot": "🤖 ",
     "Cool": "😎",
     "Explosion": "💥",
-    "Barrel": "🛢️",
+    "Barrel": "🛢️ ",
     "Barrels": "🛢️🛢️🛢️🛢️🛢️",
-    "Telescope": "🔭",  # replacement for binoculars
+    "Telescope": "🔭 ",  # replacement for binoculars
     "Gun": "🔫",
     "WomanSmoking": "🚬👩"
 }
