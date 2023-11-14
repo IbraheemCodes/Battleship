@@ -14,8 +14,8 @@ ICONS = {
     "Flame": "🔥 ",
     "Water": "🌊 ",
     "Robot": "🤖 ",
-    "Cool": "😎",
-    "Explosion": "💥",
+    "Cool": "😎 ",
+    "Explosion": "💥 ",
     "Barrel": "🛢️ ",
     "Barrels": "🛢️🛢️🛢️🛢️🛢️",
     "Telescope": "🔭 ",  # replacement for binoculars
