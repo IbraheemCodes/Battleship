@@ -10,17 +10,17 @@ COLUMNS = 5
 ROWS = 6
 
 ICONS = {
-    "Ship": "🚢",
-    "Flame": "🔥",
-    "Water": "🌊",
-    "Robot": "🤖",
-    "Cool": "😎",
-    "Explosion": "💥",
-    "Barrel": "🛢️",
+    "Ship": " 🚢 ",
+    "Flame": " 🔥 ",
+    "Water": " 🌊 ",
+    "Robot": " 🤖 ",
+    "Cool": " 😎 ",
+    "Explosion": " 💥 ",
+    "Barrel": " 🛢️ ",
     "Barrels": "🛢️🛢️🛢️🛢️🛢️",
-    "Telescope": "🔭",  # replacement for binoculars
-    "Gun": "🔫",
-    "WomanSmoking": "🚬👩"
+    "Telescope": " 🔭 ",  # replacement for binoculars
+    "Gun": " 🔫 ",
+    "WomanSmoking": " 🚬 👩 "
 }
 
 
@@ -203,7 +203,7 @@ def initialise_game():
             username = input("**Enter your username...**\n")
             if len(username) > 0:
                 is_username_valid = True
-                human.set_username(ICONS["Telescope"] + " " + ICONS["Cool"] + " " + ICONS["Gun"] + " (" + username + ")")
+                human.set_username(ICONS["Telescope"] + ICONS["Cool"] + ICONS["Gun"] + " (" + username + ")")
 
         while not is_difficulty_valid:
             difficulty = input("\n**Choose the difficulty:**\n1. Standard\n2. Veteran\n3. Near Impossible\n")
