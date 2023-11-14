@@ -10,17 +10,17 @@ COLUMNS = 5
 ROWS = 6
 
 ICONS = {
-    "Ship": " 🚢 ",
-    "Flame": " 🔥 ",
-    "Water": " 🌊 ",
-    "Robot": " 🤖 ",
-    "Cool": " 😎 ",
-    "Explosion": " 💥 ",
-    "Barrel": " 🛢️ ",
+    "Ship": "🚢",
+    "Flame": "🔥",
+    "Water": "🌊",
+    "Robot": "🤖",
+    "Cool": "😎",
+    "Explosion": "💥",
+    "Barrel": "🛢️",
     "Barrels": "🛢️🛢️🛢️🛢️🛢️",
-    "Telescope": " 🔭 ",  # replacement for binoculars
-    "Gun": " 🔫 ",
-    "WomanSmoking": " 🚬 👩 "
+    "Telescope": "🔭",  # replacement for binoculars
+    "Gun": "🔫",
+    "WomanSmoking": "🚬👩"
 }
 
 
@@ -203,7 +203,7 @@ def initialise_game():
             username = input("**Enter your username...**\n")
             if len(username) > 0:
                 is_username_valid = True
-                human.set_username(ICONS["Telescope"] + ICONS["Cool"] + ICONS["Gun"] + " (" + username + ")")
+                human.set_username(ICONS["Telescope"] + " " + ICONS["Cool"] + " " + ICONS["Gun"] + " (" + username + ")")
 
         while not is_difficulty_valid:
             difficulty = input("\n**Choose the difficulty:**\n1. Standard\n2. Veteran\n3. Near Impossible\n")
@@ -327,6 +327,7 @@ def bot_attack_player():
                 if attack_loc == ICONS["Ship"] or attack_loc == ICONS["Water"]:
                     attack_valid = True
 
+    print("code reach test")
     if attack_loc == ICONS["Ship"]:
         print(ICONS["WomanSmoking"] + " Ahh we lost a ship!")
         temp[chosen_column][chosen_row] = ICONS["Explosion"]
