@@ -12,7 +12,7 @@ ROWS = 6
 ICONS = {
     "Ship": "🚢 ",
     "Flame": "🔥 ",
-    "Water": " 🌊 ",
+    "Water": "🌊 ",
     "Robot": "🤖 ",
     "Cool": "😎 ",
     "Explosion": "💥 ",
@@ -20,7 +20,7 @@ ICONS = {
     "Barrels": "🛢️🛢️🛢️🛢️🛢️",
     "Telescope": "🔭 ",  # replacement for binoculars
     "Gun": "🔫",
-    "WomanSmoking": "🚬👩"
+    "WomanSmoking": "🚬 👩"
 }
 
 
