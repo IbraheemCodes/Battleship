@@ -12,7 +12,7 @@ ROWS = 6
 ICONS = {
     "Ship": "🚢 ",
     "Flame": "🔥 ",
-    "Water": "🌊 ",
+    "Water": " 🌊 ",
     "Robot": "🤖 ",
     "Cool": "😎 ",
     "Explosion": "💥 ",
