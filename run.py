@@ -4,6 +4,7 @@ import os
 import sys
 import subprocess
 
+
 # Constants
 COLUMNS = 5
 ROWS = 6
