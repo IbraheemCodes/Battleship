@@ -225,8 +225,8 @@ def initialise_game():
 
 def print_results():
 
-  # os.system('cls' if os.name == 'nt' else 'clear')
-  # subprocess.call("clear" if os.name != "nt" else "cls", shell=True)
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    # subprocess.call("clear" if os.name != "nt" else "cls", shell=True)
     print("-------------")
     print(bot.get_username())
     print("-------------")
