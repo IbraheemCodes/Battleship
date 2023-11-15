@@ -391,7 +391,7 @@ def end_game_actions():
             sys.exit()
 
 
-# Called functions. Each function repeatedly executes depending on game's state
+# Called functions. Each function repeatedly executes depending on game's state with while loop
 initialise_game()
 play_game()
 end_game_actions()
